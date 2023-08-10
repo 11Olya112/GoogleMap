@@ -44,12 +44,9 @@ export const NavBar = ({ setOrigin, setDestination, mapRef }) => {
 
   const onPlaceSelected = (details, flag) => {
     const set = flag === "origin" ? setOrigin : setDestination;
-    const position = {
-      latitude: details?.geometry.location.lat || 0,
-      longitude: details?.geometry.location.lng || 0,
-    };
-    set(position);
-    moveTo(position);
+    const { lat, lng } = details?.geometry.location || { lat: 0, lng: 0 };
+    set({ latitude: lat, longitude: lng });
+    moveTo({ latitude: lat, longitude: lng });
   };
 
   return (
@@ -74,8 +71,14 @@ export const NavBar = ({ setOrigin, setDestination, mapRef }) => {
   );
 };
 
+const sharedStyles = {
+  backgroundColor: "#0F0F0F",
+  color: "#EBEBEB",
+};
+
 const styles = StyleSheet.create({
   routeText: {
+    ...sharedStyles,
     fontSize: 20,
     fontWeight: "700",
     lineHeight: 25,

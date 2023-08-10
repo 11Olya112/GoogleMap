@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "AwesomeProject",
+    "name": "Map",
     "slug": "reactnative",
+    "description": "This is a react-native project with google map",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -10,6 +11,13 @@
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "enabled": true,
+      "fallbackToCacheTimeout": 0,
+      "checkAutomatically": "ON_LOAD",
+      "useClassicUpdates": false,
+      "url": "https://u.expo.dev/456728b2-3dda-4f5d-be27-e8e89aab1587"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -31,6 +39,9 @@
         "projectId": "456728b2-3dda-4f5d-be27-e8e89aab1587"
       }
     },
-    "owner": "olya321"
+    "owner": "olya321",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    }
   }
 }

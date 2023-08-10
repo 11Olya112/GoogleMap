@@ -22,27 +22,9 @@ export default App = () => {
   const [distance, setDistance] = useState(0);
   const [duration, setDuration] = useState(0);
   const [userLocation, setUserLocation] = useState(null);
-  const [isMoving, setIsMoving] = useState(false);
 
   const mapRef = useRef(null);
-
-  const updateLocation = async () => {
-    const location = await Location.getCurrentPositionAsync({});
-    const { latitude, longitude } = location.coords;
-    setUserLocation({ latitude, longitude });
-
-    if (isMoving) {
-      moveTo({ latitude, longitude }); // Викликаємо вашу функцію moveTo для руху картою
-    }
-  };
-
-  useEffect(() => {
-    if (isMoving) {
-      const intervalId = setInterval(updateLocation, 1000); // Оновлювати координати кожну секунду
-      return () => clearInterval(intervalId);
-    }
-  }, [isMoving]);
-
+  const GOOGLE_MAPS_API_KEY = "AIzaSyAYd6GORf3u4BNL9OSI4QaYaRGQVLsOYfU";
   const edgePaddingValue = 50;
 
   const edgePadding = {
@@ -62,8 +44,6 @@ export default App = () => {
 
   const traceRouteOnReady = (args) => {
     if (args) {
-      // args.distance
-      // args.duration
       setDistance(args.distance);
       setDuration(args.duration);
     }
@@ -95,18 +75,13 @@ export default App = () => {
           <MapViewDirections
             origin={origin}
             destination={destination}
-            apikey="AIzaSyAYd6GORf3u4BNL9OSI4QaYaRGQVLsOYfU"
+            apikey={GOOGLE_MAPS_API_KEY}
             strokeColor="#6644ff"
             strokeWidth={4}
             onReady={traceRouteOnReady}
           />
         )}
       </MapView>
-      <Button
-        title={isMoving ? "Stop Moving" : "Start Moving"}
-        onPress={() => setIsMoving(!isMoving)}
-        style={{ position: "absolute", top: 20, left: 20, zIndex: 1 }}
-      />
       <TouchableOpacity
         onPress={traceRoute}
         style={{
@@ -188,5 +163,5 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "bold",
     textAlign: "center",
-  },  
+  },
 });
