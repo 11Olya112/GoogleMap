@@ -2,7 +2,7 @@
 
 It's a mobile application that will allow the user to plot a route from point A to point B,
 and will also provide information on the distance and approximate time of the route from point A to point B.
-- [DEMO](https://expo.dev/accounts/olya321/projects)
+- [DEMO] - exp://exp.host/@olya321/reactnative
 
 ## Description
 
